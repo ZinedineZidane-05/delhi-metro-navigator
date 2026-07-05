@@ -1,0 +1,11 @@
+import axios from 'axios';
+const api = axios.create({ baseURL: '/api', headers: { 'Content-Type': 'application/json' } });
+export const getStations = async () => (await api.get('/stations')).data;
+export const getMapEdges = async () => (await api.get('/map')).data;
+export const getShortestDistance = async (source, destination) => (await api.post('/shortest-distance', { source, destination })).data;
+export const getShortestTime = async (source, destination) => (await api.post('/shortest-time', { source, destination })).data;
+export const getShortestPathByDistance = async (source, destination) => (await api.post('/shortest-path-distance', { source, destination })).data;
+export const getShortestPathByTime = async (source, destination) => (await api.post('/shortest-path-time', { source, destination })).data;
+export const getAlternatePathByDistance = async (source, destination, blockedStations) => (await api.post('/alternate-path-distance', { source, destination, blockedStations })).data;
+export const getAlternatePathByTime = async (source, destination, blockedStations) => (await api.post('/alternate-path-time', { source, destination, blockedStations })).data;
+export default api;
